@@ -1,6 +1,6 @@
-# [Project name]
+# Food Palace Restaurant
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+A full-stack Nigerian restaurant ordering platform with customer-facing ordering, cart, checkout, order tracking, and a complete admin dashboard.
 
 ## Run & Operate
 
@@ -14,7 +14,8 @@ _Replace the heading above with the project's name, and this line with one sente
 ## Stack
 
 - pnpm workspaces, Node.js 24, TypeScript 5.9
-- API: Express 5
+- Frontend: React + Vite, shadcn/ui, Tailwind CSS, Framer Motion, TanStack Query, Wouter router
+- API: Express 5, JWT auth (Node crypto — no bcrypt)
 - DB: PostgreSQL + Drizzle ORM
 - Validation: Zod (`zod/v4`), `drizzle-zod`
 - API codegen: Orval (from OpenAPI spec)
@@ -22,23 +23,55 @@ _Replace the heading above with the project's name, and this line with one sente
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `lib/api-spec/openapi.yaml` — single source of truth for API contract
+- `lib/db/src/schema.ts` — Drizzle DB schema
+- `lib/api-client-react/src/generated/api.ts` — auto-generated React Query hooks
+- `lib/api-client-react/src/custom-fetch.ts` — fetch wrapper that injects JWT from localStorage
+- `artifacts/api-server/src/routes/` — all Express route handlers
+- `artifacts/food-palace/src/pages/` — all customer + admin pages
+- `artifacts/food-palace/src/contexts/` — AuthContext (JWT), CartContext (localStorage)
+- `artifacts/food-palace/src/components/layouts/` — CustomerLayout, AdminLayout
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- JWT stored in `localStorage` as `food_palace_token` (customer) and `food_palace_admin_token` (admin); custom-fetch injects whichever is present as `Authorization: Bearer`
+- Cart is client-side only (localStorage) — never stored in DB until checkout
+- Orders API uses `optionalAuth` middleware so guests can place orders
+- Drizzle `numeric` columns return strings — all route handlers convert with `Number()`
+- Settings row is auto-created with defaults on first `GET /api/settings`
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+- **Customer**: Browse menu by category, search, view product details with variants/addons, add to cart, register/login, checkout with delivery zone selection, pay by bank transfer (MONIEPOINT MFB / 9110064364) or cash on delivery, track order status, save favorites
+- **Admin** (`/admin/login`): Dashboard analytics, manage orders (status + payment confirmation), manage products/categories/delivery zones, update restaurant settings
+- **WhatsApp** floating button linked to +2349110064364
+
+## Delivery Zones
+
+| Zone | Areas | Fee |
+|------|-------|-----|
+| Zone A | Unguwan Dosa, Kawo | ₦1,000 |
+| Zone B | Barnawa, Kakuri | ₦1,500 |
+| Zone C | Sabon Tasha, Ungwan Rimi | ₦2,000 |
+
+## Admin Credentials
+
+- Email: `admin@foodpalace.com`
+- Password: `admin123`
+- Login at: `/admin/login`
 
 ## User preferences
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+- Nigerian restaurant — Kaduna-based delivery zones
+- Bank: MONIEPOINT MFB, Account: USMAN SAMBO MARAFA, 9110064364
+- WhatsApp: +2349110064364
+- Theme: Navy blue (#0f172a) + Gold (#d4a017)
 
 ## Gotchas
 
-_Populate as you build — sharp edges, "always run X before Y" rules._
+- Always run `pnpm --filter @workspace/api-spec run codegen` after editing `openapi.yaml` — generated hooks must stay in sync
+- Drizzle numeric fields return strings from DB — always wrap in `Number()` in route handlers
+- Do not run `pnpm dev` at workspace root — use workflow tools
 
 ## Pointers
 

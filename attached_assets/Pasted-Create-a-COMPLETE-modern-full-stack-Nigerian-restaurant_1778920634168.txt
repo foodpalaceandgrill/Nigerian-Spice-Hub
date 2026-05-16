@@ -1,0 +1,458 @@
+Create a COMPLETE modern full-stack Nigerian restaurant ordering platform called:
+
+FOOD PALACE RESTAURANT
+
+IMPORTANT:
+This is a REAL production-style restaurant platform, not a demo landing page.
+
+Inspect the entire existing project first because some buttons, admin systems, live deployment features, date/time systems, responsiveness, frontend/backend connections, forms, animations, and interactive components may currently not work properly.
+
+Before building or modifying anything:
+- scan the entire project
+- detect broken functionality
+- detect runtime issues
+- detect missing API connections
+- detect frontend/backend communication issues
+- detect database issues
+- detect responsiveness problems
+- detect broken admin functionality
+- detect deployment problems
+- detect non-working buttons/forms
+- detect broken links/imports/scripts
+- automatically repair anything unstable or incomplete
+
+Build a clean scalable production-ready architecture with:
+- frontend
+- backend
+- database
+- admin dashboard
+- ordering system
+- authentication system
+- deployment-ready structure
+
+Use:
+- Next.js
+- Node.js + Express
+- PostgreSQL
+- Prisma ORM
+- Tailwind CSS
+- JWT Authentication
+
+The project MUST properly connect:
+Frontend ↔ Backend API ↔ Database
+
+Fix CORS automatically and ensure all APIs work correctly.
+
+====================================
+MAIN GOAL
+====================================
+
+Build a responsive Nigerian restaurant ordering website where customers can:
+- browse meals
+- add food to cart
+- place orders
+- choose delivery locations
+- pay with bank transfer or cash on delivery
+- track orders
+
+Also create a full admin dashboard for restaurant management.
+
+====================================
+MENU CATEGORIES
+====================================
+
+Use ONLY these categories:
+
+- Main Meals
+- Burgers & Shawarma
+- Soups & Swallow
+- Sides
+- Drinks
+- Desserts
+
+Remove all pizza-related items completely.
+
+====================================
+MAIN MEALS
+====================================
+
+Add sample meals:
+- Jollof Rice
+- Fried Rice
+- White Rice & Stew
+- Rice & Chicken
+- Rice & Turkey
+- Spaghetti
+
+====================================
+BURGERS & SHAWARMA
+====================================
+
+Create advanced customizable ordering system.
+
+SHAWARMA ITEMS:
+- Beef Shawarma
+- Chicken Shawarma
+
+Each shawarma item must support sizes:
+- Small
+- Medium
+- Large
+- Jumbo
+
+Each size must support:
+- different prices
+- optional add-ons
+- live price updates
+
+BURGER ITEMS:
+- Single Decker Burger
+- Double Decker Burger
+- Single Decker Burger with Cheese
+- Double Decker Burger with Cheese
+
+Allow:
+- extra cheese
+- extra sauce
+- quantity selection
+
+====================================
+SOUPS & SWALLOW
+====================================
+
+SOUPS:
+- Egusi Soup
+- Miyan Kuka
+- Okra Soup
+- Vegetable Soup
+
+SWALLOW OPTIONS:
+- Tuwo
+- Eba
+- Pounded Yam
+
+Allow users to combine:
+- soup
+- swallow
+- extra protein
+
+====================================
+SIDES
+====================================
+
+Include:
+- Chicken
+- Turkey
+- Plantain
+- Fries
+- Moi Moi
+
+====================================
+DRINKS
+====================================
+
+Include:
+- Soft Drinks
+- Water
+- Juice
+- Milkshakes
+
+====================================
+DESSERTS
+====================================
+
+Include:
+- Ice Cream
+- Cake
+- Doughnuts
+
+====================================
+CUSTOMER FEATURES
+====================================
+
+Customers should be able to:
+- Create account/login
+- Browse menu
+- Search meals
+- Filter by category
+- Add to cart
+- Increase/decrease quantity
+- Remove cart items
+- Favorite meals
+- Checkout
+- Enter delivery address
+- Select delivery location
+- Choose payment method
+- Track order status
+- View previous orders
+- Contact support
+
+====================================
+DELIVERY SYSTEM
+====================================
+
+Create delivery fee system based on delivery zones.
+
+Customer should:
+- enter full delivery address
+- select nearest area/location
+
+Nearby locations should share same delivery fee.
+
+ZONE A — ₦1000
+- Unguwan Dosa
+- Kawo
+
+ZONE B — ₦1500
+- Barnawa
+- Kakuri
+
+ZONE C — ₦2000
+- Sabon Tasha
+- Ungwan Rimi
+
+When customer selects location:
+- delivery fee updates automatically
+- total cart price updates live
+
+====================================
+PAYMENT SYSTEM
+====================================
+
+Payment methods:
+- Cash on Delivery
+- Bank Transfer
+
+When customer selects Bank Transfer display:
+
+BANK NAME:
+MONIEPOINT MFB
+
+ACCOUNT NAME:
+USMAN SAMBO MARAFA
+
+ACCOUNT NUMBER:
+9110064364
+
+Customer flow:
+1. Customer places order
+2. Selects Bank Transfer
+3. Bank details appear
+4. Customer makes transfer
+5. Customer taps:
+“I Have Made Payment”
+6. Order status becomes:
+“Awaiting Confirmation”
+
+====================================
+ADMIN DASHBOARD
+====================================
+
+Create secure admin dashboard.
+
+Admin must be able to:
+- Login securely
+- Add/edit/delete categories
+- Add/edit/delete products
+- Add/edit/delete variants
+- Add/edit/delete sizes
+- Manage add-ons
+- Upload food images
+- Change prices dynamically
+- Manage delivery zones
+- Edit delivery fees
+- Confirm payments
+- View customer orders
+- Update order statuses
+- Enable/disable products
+- View analytics
+- Edit restaurant information
+- Edit hero title/subtitle
+- Edit social media links
+- Edit footer information
+- Edit opening/closing hours
+
+Everything must remain editable from admin dashboard.
+Do NOT hardcode menu data.
+
+====================================
+AUTHENTICATION & SECURITY
+====================================
+
+Include:
+- JWT authentication
+- encrypted passwords
+- role-based admin protection
+- secure API routes
+- input validation
+- proper error handling
+- forgot password system
+- reset token structure
+
+====================================
+UI / DESIGN REQUIREMENTS
+====================================
+
+Style:
+- Luxury modern Nigerian restaurant aesthetic
+- Blue + gold + ash/black elegant color system
+- Smooth animations
+- Sticky navigation
+- Beautiful food cards
+- Glassmorphism UI
+- Mobile-first responsive design
+- Dark/light mode
+- Toast notifications
+- Loading skeletons
+
+Add:
+- smooth scrolling
+- hover effects
+- fade-in animations
+- smooth transitions
+- loading spinners
+- responsive interactions
+
+Animations should remain lightweight and optimized.
+
+====================================
+PERFORMANCE OPTIMIZATION
+====================================
+
+Optimize:
+- image compression
+- lazy loading
+- frontend rendering
+- animation performance
+- script optimization
+- API performance
+- database queries
+- mobile performance
+- responsiveness
+- loading speed
+
+Reduce lag and render blocking issues.
+
+====================================
+REAL-TIME & LIVE FEATURES
+====================================
+
+Fix any existing static/hardcoded systems.
+
+Ensure:
+- admin dashboard uses real-time current date/time
+- timestamps update dynamically
+- order activity updates live
+- dashboard widgets refresh correctly
+
+The website must behave like a modern live web app, not a static template.
+
+====================================
+DEPLOYMENT & LIVE ACCESSIBILITY
+====================================
+
+The website may currently fail to load externally on other devices or display “website not live”.
+
+Inspect and fix:
+- deployment configuration
+- external accessibility
+- failed assets
+- server stability
+- frontend/backend deployment issues
+- build issues
+- production configuration
+
+Ensure:
+- website works publicly on all devices
+- no crashes or white screens
+- admin panel and frontend work simultaneously
+- deployment remains stable
+
+====================================
+EXTRA FEATURES
+====================================
+
+Add:
+- WhatsApp support button
+- WhatsApp order backup summary
+- QR code menu support
+- Google Maps embed
+- SEO optimization
+- PWA support
+- Email notification structure
+- Mobile app-ready architecture
+- Restaurant open/closed system
+- Estimated delivery times
+- Delivery notes
+- Stock management
+- Admin notification sounds
+- Admin unread order badges
+- Multiple admin roles
+
+====================================
+DATABASE
+====================================
+
+Create PostgreSQL schema/models for:
+- Users
+- Admins
+- Categories
+- Products
+- Product Variants
+- Product Sizes
+- Add-ons
+- Orders
+- Order Items
+- Payments
+- Delivery Zones
+- Delivery Addresses
+- Favorites
+- Notifications
+
+Use Prisma migrations correctly.
+
+Create automatic seed/demo data.
+
+====================================
+DEPLOYMENT & GITHUB
+====================================
+
+Prepare project for:
+- GitHub
+- Vercel
+- Railway
+- Render
+
+Generate:
+- README.md
+- .gitignore
+- .env.example
+- setup instructions
+- deployment instructions
+- API documentation
+
+Remove ALL Replit branding from frontend UI.
+
+====================================
+FINAL TESTING
+====================================
+
+After completing everything:
+
+1. Install dependencies
+2. Run database migrations
+3. Start backend server
+4. Start frontend server
+5. Test frontend ↔ backend ↔ database communication
+6. Detect and automatically fix build errors
+7. Ensure application runs successfully
+8. Test all pages/routes
+9. Test admin dashboard
+10. Test authentication
+11. Test cart and checkout
+12. Test payment flow
+13. Test responsiveness
+14. Test deployment build
+15. Scan console/runtime errors
+16. Fix all detected bugs automatically
+17. Ensure final project is stable, responsive, fast, scalable, professional, production-ready, and fully functional.

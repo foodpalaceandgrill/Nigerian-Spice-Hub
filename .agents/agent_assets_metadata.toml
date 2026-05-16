@@ -1,0 +1,38 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "Z2SVqssu4x7Va2gPvKe6d"
+uri = "file://artifacts/food-palace/public/images/jollof-rice.png"
+type = "image"
+title = "Nigerian Jollof Rice"
+
+[[generated]]
+id = "MZ0apPujocnEpme_gEoqg"
+uri = "file://artifacts/food-palace/public/images/shawarma.png"
+type = "image"
+title = "Nigerian Shawarma Wrap"
+
+[[generated]]
+id = "g2G07bDKINe9kAa9JU8cL"
+uri = "file://artifacts/food-palace/public/images/egusi-soup.png"
+type = "image"
+title = "Egusi Soup and Swallow"
+
+[[generated]]
+id = "sfTFPtISMajdIDeKdfkva"
+uri = "file://artifacts/food-palace/public/images/burger.png"
+type = "image"
+title = "Gourmet Double Burger"
+
+[[generated]]
+id = "bI97XcgttqsORF45u09Eh"
+uri = "file://artifacts/food-palace/public/images/fried-rice.png"
+type = "image"
+title = "Fried Rice and Chicken"
+
+[[generated]]
+id = "SkpdxTe9SCZxbEYzSxM3m"
+uri = "file://artifacts/food-palace/public/images/drinks.png"
+type = "image"
+title = "Assorted Nigerian Drinks"

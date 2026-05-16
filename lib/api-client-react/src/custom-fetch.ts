@@ -356,6 +356,17 @@ export async function customFetch<T = unknown>(
     if (token) {
       headers.set("authorization", `Bearer ${token}`);
     }
+  } else if (!headers.has("authorization")) {
+    // Check localStorage directly for our tokens
+    if (typeof window !== "undefined" && window.localStorage) {
+      const adminToken = window.localStorage.getItem("food_palace_admin_token");
+      const userToken = window.localStorage.getItem("food_palace_token");
+      
+      const token = adminToken || userToken;
+      if (token) {
+        headers.set("authorization", `Bearer ${token}`);
+      }
+    }
   }
 
   const requestInfo = { method, url: resolveUrl(input) };
