@@ -15,7 +15,7 @@ export default function Menu() {
     query: { queryKey: getListCategoriesQueryKey() }
   });
 
-  const { data: products, isLoading: isProductsLoading } = useListProducts({
+  const { data: products, isLoading: isProductsLoading } = useListProducts(undefined, {
     query: { queryKey: getListProductsQueryKey() }
   });
 

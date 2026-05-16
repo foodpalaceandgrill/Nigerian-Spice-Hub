@@ -1,0 +1,86 @@
+Finalize the entire FOOD PALACE RESTAURANT platform professionally.
+
+Set the main website header/hero title to:
+
+FOOD PALACE RESTAURANT
+
+Set the main subtitle to:
+
+“Serving freshly made local favorites with fast doorstep delivery.”
+
+Perform a complete final production pass across the whole project and ensure EVERYTHING is fully connected, functional, optimized, responsive, stable, and deployment-ready.
+
+Inspect the full application carefully because some features, buttons, admin systems, frontend/backend connections, APIs, database operations, live deployment features, responsiveness, animations, authentication flows, forms, payment systems, cart systems, timestamps, or real-time updates may still not work properly.
+
+Run a complete project-wide audit and automatically:
+- detect bugs
+- detect broken functionality
+- detect runtime errors
+- detect console errors
+- detect API failures
+- detect database connection issues
+- detect broken routes/pages
+- detect failed imports/scripts
+- detect broken buttons/forms
+- detect responsiveness issues
+- detect deployment problems
+- detect authentication/session issues
+- detect cart/checkout issues
+- detect payment flow issues
+- detect admin dashboard issues
+- detect image loading/performance issues
+- detect animation/performance problems
+
+Then automatically repair and optimize everything.
+
+Ensure:
+- frontend ↔ backend ↔ database communication works correctly
+- all APIs function properly
+- CORS issues are fixed
+- all pages/routes are connected correctly
+- authentication works securely
+- admin dashboard works completely
+- menu management works dynamically
+- delivery zones calculate correctly
+- payment flows work properly
+- bank transfer confirmation system works
+- order tracking works
+- cart and checkout work correctly
+- real-time dashboard updates function properly
+- timestamps/dates update dynamically
+- website works publicly on all devices
+- deployment remains stable
+- no white screens/crashes exist
+
+Optimize:
+- loading speed
+- animations
+- responsiveness
+- image compression
+- script performance
+- database queries
+- mobile experience
+- SEO structure
+- production build performance
+
+Ensure the design remains:
+- luxury modern Nigerian restaurant style
+- premium blue + gold + ash/black aesthetic
+- smooth and elegant
+- mobile-first responsive
+- visually polished
+- production quality
+
+Remove all remaining Replit branding or unnecessary placeholder/demo content.
+
+Finally:
+1. install dependencies
+2. run migrations
+3. seed database
+4. build frontend
+5. build backend
+6. run full application tests
+7. run deployment tests
+8. fix all remaining errors automatically
+9. verify application stability
+10. ensure the final platform is clean, scalable, secure, modern, fast, fully functional, and production-ready.

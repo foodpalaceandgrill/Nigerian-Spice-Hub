@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { db, ordersTable, orderItemsTable } from "@workspace/db";
-import { eq, desc, asc, and } from "drizzle-orm";
+import { eq, desc, asc, and, inArray } from "drizzle-orm";
 import { authenticate, requireAdmin, optionalAuth, type AuthRequest } from "../middlewares/authenticate";
 import {
   ListOrdersQueryParams,
@@ -59,14 +59,16 @@ router.get("/orders", optionalAuth, async (req: AuthRequest, res): Promise<void>
     ? await db.select().from(ordersTable).where(and(...conditions)).orderBy(desc(ordersTable.createdAt))
     : await db.select().from(ordersTable).orderBy(desc(ordersTable.createdAt));
 
-  const orderIds = orders.map((o) => o.id);
-
-  if (orderIds.length === 0) {
+  if (orders.length === 0) {
     res.json([]);
     return;
   }
 
-  const allItems = await db.select().from(orderItemsTable).orderBy(asc(orderItemsTable.orderId));
+  const orderIds = orders.map((o) => o.id);
+  const allItems = await db.select().from(orderItemsTable)
+    .where(inArray(orderItemsTable.orderId, orderIds))
+    .orderBy(asc(orderItemsTable.orderId));
+
   const itemsByOrder = allItems.reduce<Record<number, typeof allItems>>((acc, item) => {
     if (!acc[item.orderId]) acc[item.orderId] = [];
     acc[item.orderId].push(item);
@@ -91,7 +93,8 @@ router.post("/orders", optionalAuth, async (req: AuthRequest, res): Promise<void
 
   const { items, ...orderData } = parsed.data;
 
-  const paymentStatus = orderData.paymentMethod === "cash_on_delivery" ? "unpaid" : "pending_transfer";
+  const isCash = orderData.paymentMethod === "CASH" || orderData.paymentMethod === "cash_on_delivery";
+  const paymentStatus = isCash ? "UNPAID" : "PENDING";
 
   const [order] = await db.insert(ordersTable).values({
     customerName: orderData.customerName,
@@ -106,7 +109,7 @@ router.post("/orders", optionalAuth, async (req: AuthRequest, res): Promise<void
     zoneId: orderData.zoneId ?? null,
     deliveryNotes: orderData.deliveryNotes ?? null,
     userId: req.userId ?? null,
-    status: "pending",
+    status: "PENDING",
     paymentStatus,
   }).returning();
 
@@ -190,13 +193,13 @@ router.post("/orders/:id/payment", optionalAuth, async (req: AuthRequest, res): 
   const updateData: Record<string, string> = {};
 
   if (body.data.action === "customer_confirmed") {
-    updateData.status = "awaiting_confirmation";
-    updateData.paymentStatus = "pending_confirmation";
+    updateData.paymentStatus = "AWAITING_CONFIRMATION";
+    updateData.status = "AWAITING_CONFIRMATION";
   } else if (isAdmin && body.data.action === "admin_confirm") {
-    updateData.paymentStatus = "paid";
-    updateData.status = "confirmed";
+    updateData.paymentStatus = "PAID";
+    updateData.status = "CONFIRMED";
   } else if (isAdmin && body.data.action === "admin_reject") {
-    updateData.paymentStatus = "failed";
+    updateData.paymentStatus = "FAILED";
   }
 
   if (body.data.paymentStatus) {

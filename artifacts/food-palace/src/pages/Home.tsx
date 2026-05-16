@@ -14,6 +14,7 @@ export default function Home() {
   });
 
   const { data: featuredProducts, isLoading: isProductsLoading } = useListProducts(
+    undefined,
     { query: { queryKey: getListProductsQueryKey() } }
   );
 
@@ -40,10 +41,10 @@ export default function Home() {
             className="max-w-2xl"
           >
             <h1 className="font-serif text-4xl md:text-6xl font-bold leading-tight mb-6 text-secondary">
-              {settings?.heroTitle || "A Taste of Royalty."}
+              {settings?.heroTitle || "FOOD PALACE RESTAURANT"}
             </h1>
             <p className="text-lg md:text-xl text-primary-foreground/90 mb-8 max-w-xl">
-              {settings?.heroSubtitle || "Premium Nigerian cuisine crafted with passion and delivered fresh to your door."}
+              {settings?.heroSubtitle || "Serving freshly made local favorites with fast doorstep delivery."}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <Link href="/menu">

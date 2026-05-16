@@ -8,7 +8,7 @@ import { toast } from "sonner";
 import { useQueryClient } from "@tanstack/react-query";
 
 export default function AdminProducts() {
-  const { data: products, isLoading } = useListProducts({
+  const { data: products, isLoading } = useListProducts(undefined, {
     query: { queryKey: getListProductsQueryKey() }
   });
   

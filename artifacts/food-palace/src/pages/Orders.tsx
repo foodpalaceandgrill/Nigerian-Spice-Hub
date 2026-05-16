@@ -1,16 +1,15 @@
 import { CustomerLayout } from "@/components/layouts/CustomerLayout";
 import { useListOrders, getListOrdersQueryKey } from "@workspace/api-client-react";
-import { useAuth } from "@/contexts/AuthContext";
 import { Link } from "wouter";
 import { format } from "date-fns";
 import { ShoppingBag, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Orders() {
-  const { user } = useAuth();
-  const { data: orders, isLoading } = useListOrders({
-    query: { queryKey: getListOrdersQueryKey({ userId: user?.id }) }
-  });
+  const { data: orders, isLoading } = useListOrders(
+    undefined,
+    { query: { queryKey: getListOrdersQueryKey(), refetchInterval: 30000 } }
+  );
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN', maximumFractionDigits: 0 }).format(price);
@@ -19,6 +18,7 @@ export default function Orders() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'PENDING': return 'bg-yellow-100 text-yellow-800 border-yellow-200';
+      case 'AWAITING_CONFIRMATION': return 'bg-sky-100 text-sky-800 border-sky-200';
       case 'CONFIRMED': return 'bg-blue-100 text-blue-800 border-blue-200';
       case 'PREPARING': return 'bg-purple-100 text-purple-800 border-purple-200';
       case 'OUT_FOR_DELIVERY': return 'bg-orange-100 text-orange-800 border-orange-200';
@@ -27,6 +27,8 @@ export default function Orders() {
       default: return 'bg-gray-100 text-gray-800 border-gray-200';
     }
   };
+
+  const getStatusLabel = (status: string) => status.replace(/_/g, ' ');
 
   if (isLoading) {
     return (
@@ -64,29 +66,30 @@ export default function Orders() {
     <CustomerLayout>
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         <h1 className="font-serif text-3xl font-bold mb-8 text-primary">Your Orders</h1>
-        
+
         <div className="space-y-4">
           {orders.map(order => (
             <Link key={order.id} href={`/orders/${order.id}`}>
               <div className="bg-card border rounded-lg p-4 sm:p-6 hover:shadow-md transition-shadow cursor-pointer flex flex-col sm:flex-row gap-4 justify-between sm:items-center">
                 <div className="space-y-2">
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-3 flex-wrap">
                     <span className="font-bold text-lg">Order #{order.id.toString().padStart(4, '0')}</span>
                     <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full border ${getStatusColor(order.status)}`}>
-                      {order.status.replace(/_/g, ' ')}
+                      {getStatusLabel(order.status)}
                     </span>
                   </div>
-                  
+
                   <div className="text-sm text-muted-foreground">
                     {format(new Date(order.createdAt), "MMM d, yyyy 'at' h:mm a")}
                   </div>
-                  
+
                   <div className="text-sm">
                     <span className="text-muted-foreground">Items: </span>
-                    {order.items?.map(i => `${i.quantity}x ${i.productName}`).join(', ')}
+                    {order.items?.slice(0, 3).map(i => `${i.quantity}x ${i.productName}`).join(', ')}
+                    {(order.items?.length ?? 0) > 3 && ` +${(order.items?.length ?? 0) - 3} more`}
                   </div>
                 </div>
-                
+
                 <div className="flex items-center justify-between sm:flex-col sm:items-end gap-2">
                   <div className="font-bold text-lg text-secondary">{formatPrice(order.total)}</div>
                   <div className="flex items-center text-sm font-medium text-primary hover:text-secondary transition-colors">
